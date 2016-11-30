@@ -3,7 +3,44 @@ grammar org.xtext.hannover.university.ReactDsl with org.eclipse.xtext.common.Ter
 generate reactDsl "http://www.xtext.org/hannover/university/ReactDsl"
 
 Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+    types+=ReactType+;
+
+ReactType:
+    type=(Paper|Button|TextField);
+
+
+HintTextAttribute:
+    '.hintText=' attrribute=STRING;
+
+LabelAttribute:
+    '.label=' attrribute=STRING;
+
+StyleItem:
+    name=ID ':' attrribute=STRING;
+
+StyleAttribute:
+    '.style={' styleItems+=StyleItem+ '}';
+
+AddMethod:
+    '.add(' name=ID ')';
+
+PaperAttribute:
+    StyleAttribute;
+
+PaperMethod:
+    AddMethod;
+
+Paper:
+    'Paper' name=ID elements+=(PaperAttribute|PaperMethod)*;
+
+ButtonAttribute:
+    attribute=(LabelAttribute|StyleAttribute);
+
+Button:
+    'Button' name=ID elements+=ButtonAttribute*;
+
+TextFieldAttribute:
+    attribute=(HintTextAttribute|StyleAttribute);
+
+TextField:
+    'TextField' name=ID elements+=TextFieldAttribute*;
