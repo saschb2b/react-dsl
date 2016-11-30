@@ -1,0 +1,9 @@
+grammar org.xtext.hannover.university.ReactDsl with org.eclipse.xtext.common.Terminals
+
+generate reactDsl "http://www.xtext.org/hannover/university/ReactDsl"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
