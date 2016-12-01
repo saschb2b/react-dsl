@@ -6,8 +6,7 @@ Model:
     types+=ReactType+;
 
 ReactType:
-    type=(Paper|Button|TextField);
-
+    (Paper|Button|TextField);
 
 HintTextAttribute:
     '.hintText=' attrribute=STRING;
@@ -22,7 +21,7 @@ StyleAttribute:
     '.style={' styleItems+=StyleItem+ '}';
 
 AddMethod:
-    '.add(' name=ID ')';
+    '.add(' name=[ReactType] ')';
 
 PaperAttribute:
     StyleAttribute;
