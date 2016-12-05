@@ -3,43 +3,49 @@ grammar org.xtext.hannover.university.ReactDsl with org.eclipse.xtext.common.Ter
 generate reactDsl "http://www.xtext.org/hannover/university/ReactDsl"
 
 Model:
-    types+=ReactType+;
+    models+=(ReactComponent|ReactMaterialUI)*;
 
-ReactType:
-    (Paper|Button|TextField);
+ReactComponent:
+    'Component' name=ID properties+=ReactComponentProperty*;
 
-HintTextAttribute:
+ReactComponentProperty:
+    Render;
+
+Render:
+    '.render(' name=[ReactMaterialUI] ')';
+
+ReactMaterialUI:
+    Paper|Button|TextField;
+
+HintText:
     '.hintText=' attrribute=STRING;
 
-LabelAttribute:
+Label:
     '.label=' attrribute=STRING;
 
 StyleItem:
     name=ID ':' attrribute=STRING;
 
-StyleAttribute:
+Style:
     '.style={' styleItems+=StyleItem+ '}';
 
-AddMethod:
-    '.add(' name=[ReactType] ')';
+Add:
+    '.add(' name=[ReactMaterialUI] ')';
 
-PaperAttribute:
-    StyleAttribute;
-
-PaperMethod:
-    AddMethod;
+PaperProperty:
+    property=(Style|Add);
 
 Paper:
-    'Paper' name=ID elements+=(PaperAttribute|PaperMethod)*;
+    'Paper' name=ID properties+=PaperProperty*;
 
-ButtonAttribute:
-    attribute=(LabelAttribute|StyleAttribute);
+ButtonProperty:
+    property=(Label|Style);
 
 Button:
-    'Button' name=ID elements+=ButtonAttribute*;
+    'Button' name=ID properties+=ButtonProperty*;
 
-TextFieldAttribute:
-    attribute=(HintTextAttribute|StyleAttribute);
+TextFieldProperty:
+    property=(HintText|Style);
 
 TextField:
-    'TextField' name=ID elements+=TextFieldAttribute*;
+    'TextField' name=ID properties+=TextFieldProperty*;
