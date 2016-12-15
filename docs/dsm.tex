@@ -1,0 +1,26 @@
+\chapter{Domain Specific Model}
+Our model focuses on generating one react component class object. As an example we take a simple paper element which holds two text fields and a button. The needed code looks like this.
+
+\begin{lstlisting}
+Class TestName
+
+Component Paper
+
+TextField t1
+.hintText="Benutzername"
+.style=" float: 'left "
+
+TextField t2
+.hintText="Passwort"
+.style=" float: 'middle "
+
+Button b1
+.label="Login"
+.style=" float: 'right "
+
+\end{lstlisting}
+
+First we'll define our react component class name 'TextName'. This identifies our object in a global webapp and provides an import name for incode use. Then we define the root component of this react component. A react component can only return exactly one component. In this case we chose a paper element with 'Component Paper'.
+
+After that we define various other components which get embedded in our root element, the paper component. In this case our textfields get some additional attributes for hinttext and css styling via the '.style' snippet.
+

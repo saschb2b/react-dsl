@@ -1,0 +1,51 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	root+=Class*
+;
+	
+Class:	
+	'Class' name=ID properties+=Material*
+;
+
+Material:
+	Component | Button | TextField
+;
+
+Component:
+	'Component' name=ID
+;
+
+Button:
+	'Button' name=ID properties+=ButtonProperty*
+;
+
+ButtonProperty:
+	Label | ButtonStyle
+;
+
+Label:
+	'.label=' attribute=STRING
+;
+
+ButtonStyle:
+	'.style=' buttonStyle=STRING
+;
+
+TextFieldStyle:
+	'.style=' textfieldStyle=STRING
+;
+
+TextField:
+	'TextField' name=ID properties+=TextFieldProperty*
+;
+
+TextFieldProperty:
+	HintText | TextFieldStyle
+;
+
+HintText:
+	'.hintText=' attribute=STRING
+;

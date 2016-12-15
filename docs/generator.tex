@@ -1,0 +1,4 @@
+\chapter{Generator}
+In the main template the doGenerate Method is creating a new class with ".java" ending for each 'Class' in the Model and will therefore execute the generateComponent Method. In the generateComponent() we iterate through all Materials and creating the Components. The determineElement() in the Component Generation specify the Material and creates the Material with its Attributes.
+
+\lstinputlisting[language=Java]{../src/MyDslGenerator.xtend}

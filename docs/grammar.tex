@@ -1,0 +1,52 @@
+\chapter{Grammar}
+Our DSM starts with the Model, which contains many Classes. This Classes have a name and null to many materials. The Material can be a Component, a Button or a TextField. If the Material is a Component, it is embedding other Materials. To differentiate between the Attributes of the Materials there is a Property for each Material (ButtonProperty, TextFieldProperty).
+
+\begin{lstlisting}
+Model:
+root+=Class*
+;
+
+Class:	
+'Class' name=ID properties+=Material*
+;
+
+Material:
+Component | Button | TextField
+;
+
+Component:
+'Component' name=ID
+;
+
+Button:
+'Button' name=ID properties+=ButtonProperty*
+;
+
+ButtonProperty:
+Label | ButtonStyle
+;
+
+Label:
+'.label=' attribute=STRING
+;
+
+ButtonStyle:
+'.style=' buttonStyle=STRING
+;
+
+TextFieldStyle:
+'.style=' textfieldStyle=STRING
+;
+
+TextField:
+'TextField' name=ID properties+=TextFieldProperty*
+;
+
+TextFieldProperty:
+HintText | TextFieldStyle
+;
+
+HintText:
+'.hintText=' attribute=STRING
+;
+\end{lstlisting}
